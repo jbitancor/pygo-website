@@ -1,19 +1,27 @@
-import React from "react"
-import "../styles/globals.scss"
-import logo from "../images/just-pygo.png"
-import footerStyles from "../styles/Footer.module.scss"
+import React from "react";
+import styled from "styled-components";
 
 const Footer = () => {
   return (
-    <footer>
-      <p>Copyright 2020. PYGO Inc.</p>
-      <img src={logo} alt="" />
-      <div>
-        <p>Privacy Policy</p>
-        <p>Terms of Services</p>
-      </div>
-    </footer>
-  )
-}
+    <FooterWrapper>
+      <div></div>
+      <p>Copyright 2020 PYGO Incorporated. All rights reserved</p>
+      <div></div>
+    </FooterWrapper>
+  );
+};
 
-export default Footer
+const FooterWrapper = styled.footer`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: #2d3643;
+  color: white;
+
+  p {
+    font-size: 0.6rem;
+    margin: 1rem;
+    text-align: center;
+  }
+`;
+
+export default Footer;
