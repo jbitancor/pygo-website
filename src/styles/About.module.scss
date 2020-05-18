@@ -1,0 +1,26 @@
+.bg-about {
+  background-size: cover;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro {
+  width: 50%;
+}
+
+.meet-the-team {
+  margin: 10vh auto;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.team-summary {
+  font-size: 1.3rem;
+  font-family: open-sans, sans-serif;
+  margin-bottom: 5rem;
+}

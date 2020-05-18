@@ -1,0 +1,28 @@
+@import url("https://use.typekit.net/erb6ayl.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p {
+  font-family: open-sans, sans-serif;
+}
+
+button {
+  background: red;
+  border: none;
+  cursor: pointer;
+  font-size: 100%;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  font-family: open-sans, sans-serif;
+  text-transform: uppercase;
+  box-shadow: 0px 2.5px 2px black;
+  transition: box-shadow 0.25s;
+}
+
+button:hover {
+  box-shadow: 2.5px 4.5px 2px black;
+}

@@ -1,0 +1,33 @@
+@import url("https://use.typekit.net/erb6ayl.css");
+
+.nav-center {
+  display: flex;
+  flex-direction: row;
+  padding: 2rem;
+  justify-content: center;
+
+  .nav-header {
+    flex-grow: 2;
+  }
+  .nav-links {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    font-family: liberation-serif, sans-serif;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    list-style-type: none;
+
+    a {
+      text-decoration: none;
+      color: black;
+      transition: color 0.5s;
+    }
+
+    a:hover {
+      color: red;
+    }
+  }
+}
