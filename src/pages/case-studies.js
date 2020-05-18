@@ -21,12 +21,6 @@ const IndustriesPage = () => {
           description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, consequuntur. Voluptates ut, incidunt, accusantium adipisci sed quod harum sint ab obcaecati illo quidem explicabo autem quae molestiae officiis neque excepturi recusandae dolor molestias beatae magnam eum officia doloribus porro. Dolorum consequuntur doloribus veniam ex hic autem accusantium ratione ea totam.'
           image={preview1}
         />
-        <CaseStudy
-          title='Sample Title'
-          subtitle='Sample Subtitle'
-          description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, consequuntur. Voluptates ut, incidunt, accusantium adipisci sed quod harum sint ab obcaecati illo quidem explicabo autem quae molestiae officiis neque excepturi recusandae dolor molestias beatae magnam eum officia doloribus porro. Dolorum consequuntur doloribus veniam ex hic autem accusantium ratione ea totam.'
-          image={preview1}
-        />
       </Layout>
     </div>
   );
