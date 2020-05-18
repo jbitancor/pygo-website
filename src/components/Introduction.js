@@ -1,5 +1,5 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
 const Introduction = ({ title, subtitle, color }) => {
   return (
@@ -7,12 +7,12 @@ const Introduction = ({ title, subtitle, color }) => {
       <h1>{title}</h1>
       <h3>{subtitle}</h3>
     </IntroductionWrapper>
-  )
-}
+  );
+};
 
 const IntroductionWrapper = styled.div`
   text-align: center;
-  color: ${props => (props.color ? props.color : "black")};
+  color: ${(props) => (props.color ? props.color : "black")};
 
   h1 {
     font-weight: 100;
@@ -24,6 +24,17 @@ const IntroductionWrapper = styled.div`
     font-family: open-sans, sans-serif;
     font-weight: 100;
   }
-`
 
-export default Introduction
+  @media (max-width: 765px) {
+    h1 {
+      font-size: 2rem;
+    }
+    h3 {
+      width: 50%;
+      transform: translateX(50%);
+      font-size: 1rem;
+    }
+  }
+`;
+
+export default Introduction;
