@@ -31,7 +31,6 @@ const getImages = graphql`
 
 const AboutPage = () => {
   const imageData = useStaticQuery(getImages);
-  console.log(imageData);
   return (
     <AboutWrapper>
       <Layout>
