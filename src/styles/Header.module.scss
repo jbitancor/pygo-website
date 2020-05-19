@@ -1,43 +1,76 @@
 @import url("https://use.typekit.net/erb6ayl.css");
 
 .nav-center {
-
   display: flex;
-  flex-direction: row;
+  justify-content: space-around;
   padding: 2rem;
-  justify-content: center;
+  align-items: center;
+  background-color: red;
+  max-height: 18vh;
+ }
 
-  .nav-header {
-    flex-grow: 2;
-  }
-  .nav-links {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+.nav-links{
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
 
-    font-family: liberation-serif, sans-serif;
-    font-size: 1.5rem;
-    text-transform: capitalize;
-    list-style-type: none;
+  font-family: liberation-serif, sans-serif;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  list-style-type: none;
 
     a {
-      text-decoration: none;
-      color: black;
-      transition: color 0.5s;
+    text-decoration: none;
+    color: black;
+    transition: color 0.5s;
     }
 
     a:hover {
       color: red;
     }
+}
+
+
+.burger{
+  display: none;
+}
+
+.burger{
+  width: 60px;
+  height: 60px;
+  border-radius: 10%;
+  overflow: hidden;
+  margin-top: -6px;
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  // disable this if dev mode//
+
+  body{
+    overflow-x: hidden;
+  }
+  .burger{
+    display: block;
+  }
+  .nav-links{
+    position: absolute;
+    right: 0px;
+    height: 100vh;
+    top: 8vh;
+    background-color: red;
+    flex-direction: column;
+    align-items:center;
+    width: 40%;
+    transition: all 0.5s ease-in-out;
+  }
+  .nav-links.open{
+    width: 40%;
   }
 }
 
-@media screen and (max-width: 768px) {
-  body{
-    .nav-links{
-      position: fixed;
-      background: #cadbcc;
-    }
-  }
-}
+
+
+
