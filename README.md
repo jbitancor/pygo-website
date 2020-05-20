@@ -3,5 +3,5 @@
     <img alt="Gatsby" src="src/images/just-pygo.png" width="60" />
   </a>
 </p>
-test
+
 PYGO Inc. website
