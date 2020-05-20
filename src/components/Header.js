@@ -30,19 +30,19 @@ const Header = () => {
 
   return (
     <NavbarWrapper>
-      <div></div>
-      <div className='logo'>
-        <Link to='/'>
+      <div className={isOpen ? `overlay` : `bruh`}></div>
+      <div className="logo">
+        <Link to="/">
           <Img fluid={logo.childImageSharp.fluid}></Img>
         </Link>
       </div>
 
-      <div className='menu'>
+      <div className="menu">
         <div className={isOpen ? `toggle fix` : `toggle`} onClick={toggleNav}>
           <GiHamburgerMenu />
         </div>
-        <div className={isOpen ? `mobile-nav show` : `mobile-nav`} id='sidebar'>
-          <ul className='nav-links'>
+        <div className={isOpen ? `mobile-nav show` : `mobile-nav`} id="sidebar">
+          <ul className="nav-links">
             {links.map((item, index) => {
               return (
                 <li key={index}>
@@ -52,7 +52,7 @@ const Header = () => {
             })}
           </ul>
         </div>
-        <ul className='nav-links'>
+        <ul className="nav-links">
           {links.map((item, index) => {
             return (
               <li key={index}>
@@ -71,6 +71,18 @@ const NavbarWrapper = styled.nav`
   display: grid;
   grid-template-columns: 50px 1fr 3fr 50px;
   padding: 1rem 0;
+
+  .overlay:before {
+    content: "asd";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: 0.5;
+    z-index: 99;
+  }
 
   .logo {
     align-self: center;
@@ -116,7 +128,7 @@ const NavbarWrapper = styled.nav`
         justify-content: right;
         font-size: 1.5rem;
         cursor: pointer;
-        z-index: 50;
+        z-index: 101;
         position: absolute;
         top: 25px;
         right: 25px;
@@ -129,6 +141,7 @@ const NavbarWrapper = styled.nav`
         position: fixed;
         background: white;
         transition: width ease-in 0.3s;
+        z-index: 100;
       }
       .nav-links {
         display: none;

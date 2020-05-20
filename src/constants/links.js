@@ -1,5 +1,9 @@
 export default [
   {
+    path: "/",
+    text: "home",
+  },
+  {
     path: "/case-studies",
     text: "case studies",
   },
