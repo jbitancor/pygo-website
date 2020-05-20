@@ -97,9 +97,7 @@ const NavbarWrapper = styled.nav`
       display: none;
     }
     .menu {
-      display: flex;
-      justify-content: right;
-      align-items: center;
+      margin-left: auto;
       ul {
         display: flex;
         align-items: center;
