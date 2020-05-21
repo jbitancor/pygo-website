@@ -1,10 +1,13 @@
 import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import styled from "styled-components";
+import { graphql, useStaticQuery } from "gatsby";
 // components
 import Layout from "../components/Layout";
 import Introduction from "../components/Introduction";
-import styled from "styled-components";
-import { graphql, useStaticQuery } from "gatsby";
-import Img from "gatsby-image";
+import TextError from "../components/TextError";
+// import Img from "gatsby-image";
 
 const getImage = graphql`
   {
@@ -18,9 +21,19 @@ const getImage = graphql`
   }
 `;
 
+const validationSchema = Yup.object({
+  name: Yup.string().required("Required"),
+  email: Yup.string().email("Invalid email format").required("Required"),
+  message: Yup.string().required("Required"),
+});
+
+const onSubmit = () => {
+  console.log("HLELO");
+};
+
 const ContactPage = () => {
   const data = useStaticQuery(getImage);
-  console.log(data);
+
   return (
     <ContactWrapper>
       <Layout>
@@ -34,13 +47,41 @@ const ContactPage = () => {
               <p>AB, Canada, T6N 1G1</p>
               <p>solutions@pygo.io</p>
             </div>
-            <label htmlFor='Name'>Name</label>
-            <input type='text' />
-            <label htmlFor='Email'>Email</label>
-            <input type='text' />
-            <label htmlFor='Message'>Message</label>
-            <input type='text' />
-            <button>SEND</button>
+            <Formik
+              initialValues={{
+                name: "",
+                email: "",
+                message: "",
+              }}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}>
+              <Form>
+                <div className='form-control'>
+                  <Field type='text' id='name' name='name' placeholder='Name' />
+                  <ErrorMessage name='name' component={TextError} />
+                </div>
+                <div className='form-control'>
+                  <Field
+                    type='text'
+                    id='email'
+                    name='email'
+                    placeholder='Email'
+                  />
+                  <ErrorMessage name='email' component={TextError} />
+                </div>
+                <div className='form-control'>
+                  <Field
+                    as='textarea'
+                    type='text'
+                    id='message'
+                    name='message'
+                    placeholder='Message'
+                  />
+                  <ErrorMessage name='message' component={TextError} />
+                </div>
+                <button type='submit'>SEND</button>
+              </Form>
+            </Formik>
           </div>
         </div>
       </Layout>
@@ -59,23 +100,48 @@ const ContactWrapper = styled.div`
       display: flex;
       align-items: flex-start;
       flex-direction: column;
-
-      input {
-        width: 100%;
-        border: 1px grey solid;
-        font-size: 100%;
-        padding: 0.5rem 0rem;
-        margin-bottom: 1rem;
-      }
-
-      textarea {
-        width: 50%;
-      }
     }
   }
 
   .details {
     margin: 1rem 0rem;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .form-control {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    input,
+    textarea {
+      width: 100%;
+      border: 0;
+      padding: 1rem;
+      font-family: open-sans, sans-serif;
+      box-shadow: grey 0px 1px 3px;
+      transition: box-shadow 0.2s;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      box-shadow: black 0px 3px 3px;
+      transition: box-shadow 0.2s;
+    }
+    textarea::-webkit-resizer {
+      display: none;
+    }
+    @keyframes boxShadow {
+      from {
+        box-shadow: black 0px 0px 0px;
+      }
+      to {
+        box-shadow: black 0px 0px 5px;
+      }
+    }
   }
 `;
 
