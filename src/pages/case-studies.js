@@ -1,18 +1,37 @@
 import React from "react";
-import Layout from "../components/Layout";
+import { graphql } from "gatsby";
 import "../styles/globals.scss";
-import csStyles from "../styles/CaseStudies.module.scss";
+import styled from "styled-components";
 // components
+import StyledHero from "../components/StyledHero";
+import Layout from "../components/Layout";
 import CaseStudy from "../components/CaseStudy";
 import Introduction from "../components/Introduction";
 // images
 import preview1 from "../images/case-study1.jpg";
 
-const IndustriesPage = () => {
+export const query = graphql`
+  query {
+    caseStudiesBg: file(relativePath: { eq: "factory-2.jpg" }) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 4160) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
+`;
+
+const IndustriesPage = (props) => {
   return (
-    <div>
+    <CaseStuddyWrapper>
       <Layout>
-        <div className={csStyles.bgCaseStudies}>
+        <StyledHero
+          className='normal-gradient'
+          img={props.data.caseStudiesBg.childImageSharp.fluid}>
+          <Introduction title='Case Studies' color='white' />
+        </StyledHero>
+        <div>
           <Introduction title='Case Studies' color='white' />
         </div>
         <CaseStudy
@@ -22,8 +41,19 @@ const IndustriesPage = () => {
           image={preview1}
         />
       </Layout>
-    </div>
+    </CaseStuddyWrapper>
   );
 };
+
+const CaseStuddyWrapper = styled.section`
+  .normal-gradient {
+    background: linear-gradient(
+      to bottom,
+      rgba(158, 0, 0, 0.67) 0%,
+      rgba(27, 13, 13, 0.67) 25%,
+      rgba(201, 0, 0, 0.65) 100%
+    ) !important;
+  }
+`;
 
 export default IndustriesPage;
