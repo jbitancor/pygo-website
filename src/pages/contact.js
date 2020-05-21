@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
+import axios from "axios";
 // components
 import Layout from "../components/Layout";
 import Introduction from "../components/Introduction";
@@ -25,10 +26,19 @@ const validationSchema = Yup.object({
   name: Yup.string().required("Required"),
   email: Yup.string().email("Invalid email format").required("Required"),
   message: Yup.string().required("Required"),
+  honeypot: Yup.string(),
 });
 
-const onSubmit = () => {
-  console.log("HLELO");
+const onSubmit = (values) => {
+  if (values.honeypot) {
+    console.log("Filthy bot!");
+  } else {
+    axios.post("http://localhost:3000/test", {
+      name: `${values.name}`,
+      email: `${values.email}`,
+      message: `${values.message}`,
+    });
+  }
 };
 
 const ContactPage = () => {
@@ -52,6 +62,7 @@ const ContactPage = () => {
                 name: "",
                 email: "",
                 message: "",
+                honeypot: "",
               }}
               validationSchema={validationSchema}
               onSubmit={onSubmit}>
@@ -78,6 +89,9 @@ const ContactPage = () => {
                     placeholder='Message'
                   />
                   <ErrorMessage name='message' component={TextError} />
+                </div>
+                <div className='honey-pot'>
+                  <Field type='text' id='honeypot' name='honeypot' />
                 </div>
                 <button type='submit'>SEND</button>
               </Form>
@@ -142,6 +156,10 @@ const ContactWrapper = styled.div`
         box-shadow: black 0px 0px 5px;
       }
     }
+  }
+
+  .honey-pot {
+    display: none;
   }
 `;
 
