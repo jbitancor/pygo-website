@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import casestudy1 from "../../static/PYGO-casestudy1.pdf";
 
 const CaseStudy = ({ title, subtitle, description, image }) => {
   return (
@@ -8,7 +9,9 @@ const CaseStudy = ({ title, subtitle, description, image }) => {
         <h1>{title}</h1>
         <h3>{subtitle}</h3>
         <p>{description}</p>
-        <button>Download PDF</button>
+        <a target='_blank' href={casestudy1}>
+          <button>Download PDF</button>
+        </a>
       </div>
       <div className='cs-img-preview'>
         <img src={image} alt='' />
@@ -23,6 +26,8 @@ const CaseStudyWrapper = styled.div`
   @media (min-width: 1200px) {
     display: flex;
     flex-direction: row;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .cs-title-desc {
