@@ -107,6 +107,7 @@ const ContactPage = () => {
 };
 
 const ContactWrapper = styled.div`
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
