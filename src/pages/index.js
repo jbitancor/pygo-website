@@ -1,10 +1,13 @@
 import React from "react";
-import Layout from "../components/Layout";
+import { graphql, Link } from "gatsby";
+import styled from "styled-components";
 // styles
 import "../styles/globals.scss";
 import indexStyles from "../styles/Index.module.scss";
 // components
+import Layout from "../components/Layout";
 import Introduction from "../components/Introduction";
+import StyledHero from "../components/StyledHero";
 // intro logos
 import OAG from "../images/oil-and-gas.png";
 import MM from "../images/mining-metal.png";
@@ -21,11 +24,23 @@ import aws from "../images/bw-aws.jpg";
 import azure from "../images/bw-azure.jpg";
 import annau from "../images/bw-annau.jpg";
 
-const IndexPage = () => {
+export const query = graphql`
+  query {
+    homeBg: file(relativePath: { eq: "factory-bg.jpeg" }) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 4160) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
+`;
+
+export default (props) => {
   return (
     <div>
       <Layout>
-        <div className={indexStyles.heroContainer}>
+        <StyledHero home='true' img={props.data.homeBg.childImageSharp.fluid}>
           <Introduction
             title='Empowering Legacy Plant Floor, Equipment, and Processes.'
             subtitle='Enable connectivity, intelligence, and machine learning
@@ -58,7 +73,7 @@ const IndexPage = () => {
               <img src={PFP} alt='' />
             </div>
           </div>
-        </div>
+        </StyledHero>
         <div className={indexStyles.whatWeDoSection}>
           <div className={` ${indexStyles.whatWeDo}`}>
             <h1 style={{ color: "black" }}>What We Do</h1>
@@ -101,12 +116,12 @@ const IndexPage = () => {
               contact us'
               color='white'
             />
-            <button>Contact Us</button>
+            <button>
+              <Link to='/contact'>Contact Us</Link>
+            </button>
           </div>
         </div>
       </Layout>
     </div>
   );
 };
-
-export default IndexPage;
