@@ -63,6 +63,8 @@
 }
 
 .factory {
+  width: 50%;
+  margin-left: auto;
   position: absolute;
   right: 0;
   top: 150px;
@@ -91,6 +93,7 @@
     display: flex;
     align-items: center;
     padding: 1rem;
+    width: 150px;
 
     @media (max-width: 400px) {
       width: 125px;

@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
-import styled from "styled-components";
+import Img from "gatsby-image";
 // styles
 import "../styles/globals.scss";
 import indexStyles from "../styles/Index.module.scss";
@@ -15,14 +15,6 @@ import PMC from "../images/pipeline-midstream-chemical.png";
 import RE from "../images/renewable-energy.png";
 import MWW from "../images/manufacturing-waste-water.png";
 import PFP from "../images/pharmaceutical-food-process.png";
-// factory image
-import Factory from "../images/factory.jpg";
-// sponsor logos
-import uofa from "../images/bw-uofa.jpg";
-import atc from "../images/bw-atc.jpg";
-import aws from "../images/bw-aws.jpg";
-import azure from "../images/bw-azure.jpg";
-import annau from "../images/bw-annau.jpg";
 
 export const query = graphql`
   query {
@@ -30,6 +22,48 @@ export const query = graphql`
       childImageSharp {
         fluid(quality: 90, maxWidth: 4160) {
           ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    Factory: file(relativePath: { eq: "factory.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    uofa: file(relativePath: { eq: "bw-uofa.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    annau: file(relativePath: { eq: "bw-annau.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    aws: file(relativePath: { eq: "bw-aws.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    azure: file(relativePath: { eq: "bw-azure.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    atc: file(relativePath: { eq: "bw-atc.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
         }
       }
     }
@@ -89,23 +123,41 @@ export default (props) => {
               for safe, efficient and reliable industrial operations.
             </p>
           </div>
-          <img className={indexStyles.factory} src={Factory} alt='' />
+          <Img
+            className={indexStyles.factory}
+            fluid={props.data.Factory.childImageSharp.fluid}
+          />
         </div>
         <div className={indexStyles.sponsors}>
           <div className={indexStyles.sponsor}>
-            <img src={uofa} alt='UofA Logo' />
+            <Img
+              style={{ width: "100%" }}
+              fluid={props.data.uofa.childImageSharp.fluid}
+            />
           </div>
           <div className={indexStyles.sponsor}>
-            <img src={annau} alt='' />
+            <Img
+              style={{ width: "100%" }}
+              fluid={props.data.atc.childImageSharp.fluid}
+            />
           </div>
           <div className={indexStyles.sponsor}>
-            <img src={aws} alt='' />
+            <Img
+              style={{ width: "100%" }}
+              fluid={props.data.aws.childImageSharp.fluid}
+            />
           </div>
           <div className={indexStyles.sponsor}>
-            <img src={azure} alt='' />
+            <Img
+              style={{ width: "100%" }}
+              fluid={props.data.azure.childImageSharp.fluid}
+            />
           </div>
           <div className={indexStyles.sponsor}>
-            <img src={atc} alt='' />
+            <Img
+              style={{ width: "100%" }}
+              fluid={props.data.annau.childImageSharp.fluid}
+            />
           </div>
         </div>
         <div className={indexStyles.contactSection}>
