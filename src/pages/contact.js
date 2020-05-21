@@ -8,14 +8,14 @@ import axios from "axios";
 import Layout from "../components/Layout";
 import Introduction from "../components/Introduction";
 import TextError from "../components/TextError";
-// import Img from "gatsby-image";
+import Img from "gatsby-image";
 
 const getImage = graphql`
   {
     atc: file(relativePath: { eq: "advanced-technology-centre.webp" }) {
       childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid
+        fixed(width: 700, height: 400) {
+          ...GatsbyImageSharpFixed
         }
       }
     }
@@ -45,8 +45,11 @@ const ContactPage = () => {
   const data = useStaticQuery(getImage);
 
   return (
-    <ContactWrapper>
-      <Layout>
+    <Layout>
+      <ContactWrapper>
+        <div className='image-container'>
+          <Img fixed={data.atc.childImageSharp.fixed} />
+        </div>
         <div className='contact-section'>
           <div className='contact-us'>
             <Introduction title='Contact Us' />
@@ -98,14 +101,33 @@ const ContactPage = () => {
             </Formik>
           </div>
         </div>
-      </Layout>
-    </ContactWrapper>
+      </ContactWrapper>
+    </Layout>
   );
 };
 
 const ContactWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 960px) {
+    flex-direction: column;
+    .image-container {
+      order: 2;
+    }
+    .contact-section {
+      width: 100%;
+    }
+  }
+  @media (max-width: 600px) {
+    .image-container {
+      display: none;
+    }
+  }
+
   .contact-section {
-    margin: 15vh 15vw;
+    margin: 15px 0px;
     display: flex;
     flex-direction: column;
 
