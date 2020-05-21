@@ -85,7 +85,7 @@ const AboutWrapper = styled.div`
     margin: 10vh auto;
     padding: 0 15px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 
     @media (max-width: 500px) {
       flex-direction: column;
