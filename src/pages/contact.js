@@ -9,6 +9,8 @@ import Layout from "../components/Layout";
 import Introduction from "../components/Introduction";
 import TextError from "../components/TextError";
 import Img from "gatsby-image";
+// styles
+import "../styles/globals.scss";
 
 const getImage = graphql`
   {
@@ -146,39 +148,6 @@ const ContactWrapper = styled.div`
 
   form {
     width: 100%;
-  }
-
-  .form-control {
-    width: 100%;
-    margin-bottom: 1rem;
-
-    input,
-    textarea {
-      width: 100%;
-      border: 0;
-      padding: 1rem;
-      font-family: open-sans, sans-serif;
-      box-shadow: grey 0px 1px 3px;
-      transition: box-shadow 0.2s;
-    }
-
-    input:focus,
-    textarea:focus {
-      outline: none;
-      box-shadow: black 0px 3px 3px;
-      transition: box-shadow 0.2s;
-    }
-    textarea::-webkit-resizer {
-      display: none;
-    }
-    @keyframes boxShadow {
-      from {
-        box-shadow: black 0px 0px 0px;
-      }
-      to {
-        box-shadow: black 0px 0px 5px;
-      }
-    }
   }
 
   .honey-pot {
