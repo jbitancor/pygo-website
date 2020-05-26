@@ -11,6 +11,9 @@ p {
 }
 
 button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   background: red;
   border: none;
   cursor: pointer;

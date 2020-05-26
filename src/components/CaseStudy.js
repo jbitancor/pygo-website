@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import casestudy1 from "../../static/PYGO-casestudy1.pdf";
+import StyledModal from "../components/StyledModal";
 
 const CaseStudy = ({ title, subtitle, description, image }) => {
   return (
@@ -9,9 +10,7 @@ const CaseStudy = ({ title, subtitle, description, image }) => {
         <h1>{title}</h1>
         <h3>{subtitle}</h3>
         <p>{description}</p>
-        <a target='_blank' href={casestudy1}>
-          <button>Download PDF</button>
-        </a>
+        <StyledModal title={title} />
       </div>
       <div className='cs-img-preview'>
         <img src={image} alt='' />
