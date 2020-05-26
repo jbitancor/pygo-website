@@ -38,7 +38,7 @@ const Header = () => {
       </div>
 
       <div className="menu">
-        <div className={isOpen ? `toggle fix` : `toggle`} onClick={toggleNav}>
+        <div className={isOpen ? `toggle fix` : `toggle`} onClick={toggleNav} role="button">
           <GiHamburgerMenu />
         </div>
         <div className={isOpen ? `mobile-nav show` : `mobile-nav`} id="sidebar">

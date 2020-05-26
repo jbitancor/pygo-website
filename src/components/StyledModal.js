@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from 'gatsby';
 import styled from "styled-components";
 import Modal from "react-modal";
 import "../styles/globals.scss";
@@ -41,7 +42,7 @@ const StyledModal = ({ title }) => {
         onRequestClose={closeModal}
         style={modalStyle}>
         <StyledModalWrapper>
-          <h1>Case Study</h1>
+          <h1>Case Study Download</h1>
           <p>
             <i>{title}</i>
           </p>
@@ -54,7 +55,7 @@ const StyledModal = ({ title }) => {
           <button>
             <p>Download</p> <BsCloudDownload />
           </button>
-          <div className='pdf-preview'></div>
+          <p>Questions? <Link to="/contact" onClick={closeModal}>Contact Us</Link> </p>
         </StyledModalWrapper>
       </Modal>
     </div>
