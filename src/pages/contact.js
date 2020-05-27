@@ -51,13 +51,13 @@ const ContactPage = () => {
 
   return (
     <Layout>
+      <Introduction title='Contact Us' />
       <ContactWrapper>
         <div className='image-container'>
           <Img fixed={data.atc.childImageSharp.fixed} />
         </div>
         <div className='contact-section'>
           <div className='contact-us'>
-            <Introduction title='Contact Us' />
             <div className='details'>
               <p>Suite 131</p>
               <p>Advanced Technology Centre</p>
@@ -112,10 +112,10 @@ const ContactPage = () => {
 };
 
 const ContactWrapper = styled.div`
-  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20vh;
 
   @media (max-width: 960px) {
     flex-direction: column;
