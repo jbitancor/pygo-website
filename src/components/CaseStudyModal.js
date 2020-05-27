@@ -10,6 +10,8 @@ import TextError from "./TextError";
 import "../styles/globals.scss";
 // icons
 import { BsCloudDownload } from "react-icons/bs";
+// pdf
+import cs1 from "../../static/PYGO-casestudy1.pdf";
 
 // ----- FORMIK -----
 const validationSchema = Yup.object({
@@ -58,7 +60,11 @@ const StyledModal = ({ title }) => {
         .then(
           (response) => {
             if (response.status === 200) {
-              console.log("Success");
+              const link = document.createElement("a");
+              link.href = `${cs1}`;
+              link.setAttribute("download", "PYGO-casestudy1.pdf");
+              document.body.appendChild(link);
+              link.click();
             }
           },
           (error) => {
