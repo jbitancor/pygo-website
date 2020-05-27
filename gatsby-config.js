@@ -26,5 +26,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-modal-routing`,
+    `gatsby-plugin-transition-link`,
   ],
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 import { graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
 import styled from "styled-components";
@@ -31,32 +32,39 @@ const Header = () => {
   return (
     <NavbarWrapper>
       <div className={isOpen ? `overlay` : `bruh`}></div>
-      <div className="logo">
-        <Link to="/">
+      <div className='logo'>
+        <AniLink fade to='/'>
           <Img fluid={logo.childImageSharp.fluid}></Img>
-        </Link>
+        </AniLink>
       </div>
 
-      <div className="menu">
-        <div className={isOpen ? `toggle fix` : `toggle`} onClick={toggleNav} role="button">
+      <div className='menu'>
+        <div
+          className={isOpen ? `toggle fix` : `toggle`}
+          onClick={toggleNav}
+          role='button'>
           <GiHamburgerMenu />
         </div>
-        <div className={isOpen ? `mobile-nav show` : `mobile-nav`} id="sidebar">
-          <ul className="nav-links">
+        <div className={isOpen ? `mobile-nav show` : `mobile-nav`} id='sidebar'>
+          <ul className='nav-links'>
             {links.map((item, index) => {
               return (
                 <li key={index}>
-                  <Link to={item.path}>{item.text}</Link>
+                  <Link cover to={item.path}>
+                    {item.text}
+                  </Link>
                 </li>
               );
             })}
           </ul>
         </div>
-        <ul className="nav-links">
+        <ul className='nav-links'>
           {links.map((item, index) => {
             return (
               <li key={index}>
-                <Link to={item.path}>{item.text}</Link>
+                <Link cover to={item.path}>
+                  {item.text}
+                </Link>
               </li>
             );
           })}
