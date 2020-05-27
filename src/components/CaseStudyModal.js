@@ -3,7 +3,6 @@ import axios from "axios";
 import styled from "styled-components";
 import Modal from "react-modal";
 import { Link } from "gatsby";
-import Message from "react-message";
 // formik
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
