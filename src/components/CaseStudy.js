@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import casestudy1 from "../../static/PYGO-casestudy1.pdf";
-import StyledModal from "../components/StyledModal";
+import StyledModal from "../components/CaseStudyModal";
 
 const CaseStudy = ({ title, subtitle, description, image }) => {
   return (
     <CaseStudyWrapper>
-      <div className='cs-title-desc'>
+      <div className="cs-title-desc">
         <h1>{title}</h1>
         <h3>{subtitle}</h3>
         <p>{description}</p>
         <StyledModal title={title} />
       </div>
-      <div className='cs-img-preview'>
-        <img src={image} alt='' />
+      <div className="cs-img-preview">
+        <img src={image} alt="" />
       </div>
     </CaseStudyWrapper>
   );

@@ -35,11 +35,15 @@ const onSubmit = (values) => {
   if (values.honeypot) {
     console.log("Filthy bot!");
   } else {
-    axios.post("http://localhost:3000/test", {
-      name: `${values.name}`,
-      email: `${values.email}`,
-      message: `${values.message}`,
-    });
+    axios.post(
+      "https://0vp7fnh852.execute-api.us-east-1.amazonaws.com/test/contactform",
+      {
+        name: `${values.name}`,
+        emailAddress: `${values.email}`,
+        message: `${values.message}`,
+      }
+    );
+    console.log("success");
   }
 };
 
@@ -49,13 +53,13 @@ const ContactPage = () => {
   return (
     <Layout>
       <ContactWrapper>
-        <div className='image-container'>
+        <div className="image-container">
           <Img fixed={data.atc.childImageSharp.fixed} />
         </div>
-        <div className='contact-section'>
-          <div className='contact-us'>
-            <Introduction title='Contact Us' />
-            <div className='details'>
+        <div className="contact-section">
+          <div className="contact-us">
+            <Introduction title="Contact Us" />
+            <div className="details">
               <p>Suite 131</p>
               <p>Advanced Technology Centre</p>
               <p>9650, 20 Ave NW, Edmonton</p>
@@ -70,35 +74,36 @@ const ContactPage = () => {
                 honeypot: "",
               }}
               validationSchema={validationSchema}
-              onSubmit={onSubmit}>
+              onSubmit={onSubmit}
+            >
               <Form>
-                <div className='form-control'>
-                  <Field type='text' id='name' name='name' placeholder='Name' />
-                  <ErrorMessage name='name' component={TextError} />
+                <div className="form-control">
+                  <Field type="text" id="name" name="name" placeholder="Name" />
+                  <ErrorMessage name="name" component={TextError} />
                 </div>
-                <div className='form-control'>
+                <div className="form-control">
                   <Field
-                    type='text'
-                    id='email'
-                    name='email'
-                    placeholder='Email'
+                    type="text"
+                    id="email"
+                    name="email"
+                    placeholder="Email"
                   />
-                  <ErrorMessage name='email' component={TextError} />
+                  <ErrorMessage name="email" component={TextError} />
                 </div>
-                <div className='form-control'>
+                <div className="form-control">
                   <Field
-                    as='textarea'
-                    type='text'
-                    id='message'
-                    name='message'
-                    placeholder='Message'
+                    as="textarea"
+                    type="text"
+                    id="message"
+                    name="message"
+                    placeholder="Message"
                   />
-                  <ErrorMessage name='message' component={TextError} />
+                  <ErrorMessage name="message" component={TextError} />
                 </div>
-                <div className='honey-pot'>
-                  <Field type='text' id='honeypot' name='honeypot' />
+                <div className="honey-pot">
+                  <Field type="text" id="honeypot" name="honeypot" />
                 </div>
-                <button type='submit'>SEND</button>
+                <button type="submit">SEND</button>
               </Form>
             </Formik>
           </div>
