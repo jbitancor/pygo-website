@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import styled from "styled-components";
+import Modal from "react-modal";
+import { Link } from "gatsby";
+import Message from "react-message";
 // formik
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import TextError from "./TextError";
-import { Link } from "gatsby";
-import styled from "styled-components";
-import Modal from "react-modal";
 import "../styles/globals.scss";
 // icons
 import { BsCloudDownload } from "react-icons/bs";
@@ -17,22 +18,6 @@ const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email format").required("Required"),
   honeypot: Yup.string(),
 });
-
-const onSubmit = (values) => {
-  if (values.honeypot) {
-    console.log("Filthy bot!");
-  } else {
-    axios.post(
-      "https://0vp7fnh852.execute-api.us-east-1.amazonaws.com/test/caseStudySubmission",
-      {
-        name: `${values.name}`,
-        emailAddress: `${values.email}`,
-        caseStudy: `${values.caseStudy}`,
-      }
-    );
-    console.log("Success!!");
-  }
-};
 // ----- FORMIK -----
 
 // ----- MODAL -----
@@ -55,6 +40,35 @@ Modal.setAppElement("#___gatsby");
 // ----- MODAL -----
 
 const StyledModal = ({ title }) => {
+  const onSubmit = (values) => {
+    if (values.honeypot) {
+      console.log("Filthy bot!");
+    } else {
+      axios
+        .post(
+          "https://0vp7fnh852.execute-api.us-east-1.amazonaws.com/test/contactform",
+          {
+            name: `${values.name}`,
+            emailAddress: `${values.email}`,
+            caseStudy: `${values.caseStudy}`,
+          },
+          {
+            crossdomain: true,
+          }
+        )
+        .then(
+          (response) => {
+            if (response.status === 200) {
+              console.log("Success");
+            }
+          },
+          (error) => {
+            console.log("Negative" + error);
+          }
+        );
+    }
+  };
+
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => {
     setIsOpen(true);
@@ -71,8 +85,7 @@ const StyledModal = ({ title }) => {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={modalStyle}
-      >
+        style={modalStyle}>
         <StyledModalWrapper>
           <h1>Case Study Download</h1>
           <p>
@@ -86,30 +99,29 @@ const StyledModal = ({ title }) => {
               honeypot: "",
             }}
             validationSchema={validationSchema}
-            onSubmit={onSubmit}
-          >
+            onSubmit={onSubmit}>
             <Form style={{ width: "100%" }}>
-              <div className="form-control">
-                <Field type="text" id="name" name="name" placeholder="Name" />
-                <ErrorMessage name="name" component={TextError} />
+              <div className='form-control'>
+                <Field type='text' id='name' name='name' placeholder='Name' />
+                <ErrorMessage name='name' component={TextError} />
               </div>
-              <div className="form-control">
+              <div className='form-control'>
                 <Field
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Email"
+                  type='email'
+                  id='email'
+                  name='email'
+                  placeholder='Email'
                 />
-                <ErrorMessage name="email" component={TextError} />
+                <ErrorMessage name='email' component={TextError} />
               </div>
-              <button type="submit">
+              <button type='submit'>
                 <p>Download</p> <BsCloudDownload />
               </button>
             </Form>
           </Formik>
           <p>
             Questions?{" "}
-            <Link to="/contact" onClick={closeModal}>
+            <Link to='/contact' onClick={closeModal}>
               Contact Us
             </Link>{" "}
           </p>
