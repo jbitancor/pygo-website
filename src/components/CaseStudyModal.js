@@ -140,6 +140,13 @@ const StyledModalWrapper = styled.div`
     margin: 0.5rem 0;
   }
 
+  form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
   /* desktop */
   @media (min-width: 766px) {
     margin: 80px auto;
