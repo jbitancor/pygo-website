@@ -31,9 +31,6 @@ const IndustriesPage = (props) => {
           img={props.data.caseStudiesBg.childImageSharp.fluid}>
           <Introduction title='Case Studies' color='white' />
         </StyledHero>
-        <div>
-          <Introduction title='Case Studies' color='white' />
-        </div>
         <CaseStudy
           title='Centimeter-Level 3D Positioning Using GNSS RTK'
           subtitle='Applications in monitoring Mine Tailings Ponds, Dam Safety'

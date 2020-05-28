@@ -6,7 +6,9 @@ import { Link } from "gatsby";
 // formik
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+// components
 import TextError from "./TextError";
+import TextSuccess from "./TextSuccess";
 import "../styles/globals.scss";
 // icons
 import { BsCloudDownload } from "react-icons/bs";
@@ -33,6 +35,7 @@ const modalStyle = {
     width: "50%",
   },
   overlay: {
+    zIndex: "1000",
     backgroundColor: "rgba(128,128,128,0.8)",
   },
 };
@@ -41,6 +44,8 @@ Modal.setAppElement("#___gatsby");
 // ----- MODAL -----
 
 const StyledModal = ({ title }) => {
+  const [isSent, setIsSent] = useState(false);
+
   const onSubmit = (values) => {
     if (values.honeypot) {
       console.log("Filthy bot!");
@@ -52,9 +57,6 @@ const StyledModal = ({ title }) => {
             name: `${values.name}`,
             emailAddress: `${values.email}`,
             caseStudy: `${values.caseStudy}`,
-          },
-          {
-            crossdomain: true,
           }
         )
         .then(
@@ -65,6 +67,7 @@ const StyledModal = ({ title }) => {
               link.setAttribute("download", "PYGO-casestudy1.pdf");
               document.body.appendChild(link);
               link.click();
+              setIsSent(true);
             }
           },
           (error) => {
@@ -119,6 +122,12 @@ const StyledModal = ({ title }) => {
                 />
                 <ErrorMessage name='email' component={TextError} />
               </div>
+              {isSent && (
+                <TextSuccess>
+                  Thank you! The PDF will download shortly. Click{" "}
+                  <a href={cs1}>here</a> if it does not.
+                </TextSuccess>
+              )}
               <button type='submit'>
                 <p>Download</p> <BsCloudDownload />
               </button>

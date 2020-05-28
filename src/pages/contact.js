@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
@@ -8,6 +8,7 @@ import axios from "axios";
 import Layout from "../components/Layout";
 import Introduction from "../components/Introduction";
 import TextError from "../components/TextError";
+import TextSuccess from "../components/TextSuccess";
 import Img from "gatsby-image";
 // styles
 import "../styles/globals.scss";
@@ -31,22 +32,28 @@ const validationSchema = Yup.object({
   honeypot: Yup.string(),
 });
 
-const onSubmit = (values) => {
-  if (values.honeypot) {
-    console.log("Filthy bot!");
-  } else {
-    axios.post(
-      "https://0vp7fnh852.execute-api.us-east-1.amazonaws.com/test/contactform",
-      {
-        name: `${values.name}`,
-        emailAddress: `${values.email}`,
-        message: `${values.message}`,
-      }
-    );
-  }
-};
-
 const ContactPage = () => {
+  const [isSent, setIsSent] = useState(false);
+
+  const onSubmit = (values) => {
+    if (values.honeypot) {
+      console.log("Filthy bot!");
+    } else {
+      axios
+        .post(
+          "https://0vp7fnh852.execute-api.us-east-1.amazonaws.com/test/contactform",
+          {
+            name: `${values.name}`,
+            emailAddress: `${values.email}`,
+            message: `${values.message}`,
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          setIsSent(true);
+        });
+    }
+  };
   const data = useStaticQuery(getImage);
 
   return (
@@ -98,6 +105,9 @@ const ContactPage = () => {
                   />
                   <ErrorMessage name='message' component={TextError} />
                 </div>
+                {isSent && (
+                  <TextSuccess>Sent! We will get back to you soon.</TextSuccess>
+                )}
                 <div className='honey-pot'>
                   <Field type='text' id='honeypot' name='honeypot' />
                 </div>

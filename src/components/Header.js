@@ -50,9 +50,7 @@ const Header = () => {
             {links.map((item, index) => {
               return (
                 <li key={index}>
-                  <Link cover to={item.path}>
-                    {item.text}
-                  </Link>
+                  <Link to={item.path}>{item.text}</Link>
                 </li>
               );
             })}
@@ -62,9 +60,7 @@ const Header = () => {
           {links.map((item, index) => {
             return (
               <li key={index}>
-                <Link cover to={item.path}>
-                  {item.text}
-                </Link>
+                <Link to={item.path}>{item.text}</Link>
               </li>
             );
           })}
