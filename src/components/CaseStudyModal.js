@@ -32,7 +32,7 @@ const modalStyle = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    width: "50%",
+    padding: "4rem",
   },
   overlay: {
     zIndex: "1000",
@@ -164,21 +164,25 @@ const StyledModalWrapper = styled.div`
 
   /* desktop */
   @media (min-width: 766px) {
-    margin: 80px auto;
+    margin: 0px auto;
     width: 60%;
     height: 50vh;
   }
   /* phone */
   @media (max-width: 765px) {
     h1 {
-      font-size: 1.5rem;
+      font-size: 1.7rem;
+    }
+    i {
+      font-size: 1rem;
     }
     * {
       margin: 0.2rem 0;
-      font-size: 0.6rem;
+      font-size: 0.7rem;
     }
     button {
       * {
+        font-size: 1rem;
         margin: 0;
       }
     }
