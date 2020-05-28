@@ -19,5 +19,13 @@ module.exports = {
         path: `${__dirname}/src/images/`,
       },
     },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: `pygo-website`,
+      },
+    },
+    `gatsby-plugin-modal-routing`,
+    `gatsby-plugin-transition-link`,
   ],
 };

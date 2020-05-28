@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
@@ -8,7 +8,10 @@ import axios from "axios";
 import Layout from "../components/Layout";
 import Introduction from "../components/Introduction";
 import TextError from "../components/TextError";
+import TextSuccess from "../components/TextSuccess";
 import Img from "gatsby-image";
+// styles
+import "../styles/globals.scss";
 
 const getImage = graphql`
   {
@@ -29,30 +32,39 @@ const validationSchema = Yup.object({
   honeypot: Yup.string(),
 });
 
-const onSubmit = (values) => {
-  if (values.honeypot) {
-    console.log("Filthy bot!");
-  } else {
-    axios.post("http://localhost:3000/test", {
-      name: `${values.name}`,
-      email: `${values.email}`,
-      message: `${values.message}`,
-    });
-  }
-};
-
 const ContactPage = () => {
+  const [isSent, setIsSent] = useState(false);
+
+  const onSubmit = (values) => {
+    if (values.honeypot) {
+      console.log("Filthy bot!");
+    } else {
+      axios
+        .post(
+          "https://0vp7fnh852.execute-api.us-east-1.amazonaws.com/test/contactform",
+          {
+            name: `${values.name}`,
+            emailAddress: `${values.email}`,
+            message: `${values.message}`,
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          setIsSent(true);
+        });
+    }
+  };
   const data = useStaticQuery(getImage);
 
   return (
     <Layout>
+      <Introduction title='Contact Us' />
       <ContactWrapper>
         <div className='image-container'>
           <Img fixed={data.atc.childImageSharp.fixed} />
         </div>
         <div className='contact-section'>
           <div className='contact-us'>
-            <Introduction title='Contact Us' />
             <div className='details'>
               <p>Suite 131</p>
               <p>Advanced Technology Centre</p>
@@ -93,6 +105,9 @@ const ContactPage = () => {
                   />
                   <ErrorMessage name='message' component={TextError} />
                 </div>
+                {isSent && (
+                  <TextSuccess>Sent! We will get back to you soon.</TextSuccess>
+                )}
                 <div className='honey-pot'>
                   <Field type='text' id='honeypot' name='honeypot' />
                 </div>
@@ -107,10 +122,10 @@ const ContactPage = () => {
 };
 
 const ContactWrapper = styled.div`
-  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20vh;
 
   @media (max-width: 960px) {
     flex-direction: column;
@@ -146,39 +161,6 @@ const ContactWrapper = styled.div`
 
   form {
     width: 100%;
-  }
-
-  .form-control {
-    width: 100%;
-    margin-bottom: 1rem;
-
-    input,
-    textarea {
-      width: 100%;
-      border: 0;
-      padding: 1rem;
-      font-family: open-sans, sans-serif;
-      box-shadow: grey 0px 1px 3px;
-      transition: box-shadow 0.2s;
-    }
-
-    input:focus,
-    textarea:focus {
-      outline: none;
-      box-shadow: black 0px 3px 3px;
-      transition: box-shadow 0.2s;
-    }
-    textarea::-webkit-resizer {
-      display: none;
-    }
-    @keyframes boxShadow {
-      from {
-        box-shadow: black 0px 0px 0px;
-      }
-      to {
-        box-shadow: black 0px 0px 5px;
-      }
-    }
   }
 
   .honey-pot {
